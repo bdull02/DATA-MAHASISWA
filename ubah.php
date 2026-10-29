@@ -12,28 +12,6 @@ $id = $_GET["id"];
 //query data mahasiswa berdasarkan id
 $mhs = query("SELECT * FROM mahasiswa WHERE id= $id")[0];
 
-//cek apakah tombol submit sudah ditekan atau belum
-if(isset($_POST["submit"])){
-
-    //cek apakah data berhasil diubah atau tidak
-    if(ubah($_POST) > 0){
-        echo "
-        <script>
-        alert('data berhasil diubah!');
-        document.location.href = 'index.php';
-        </script>
-        ";
-    } else {
-        echo "
-        <script>
-        alert('data gagal diubah!');
-        document.location.href = 'index.php';
-        </script>
-        ";
-    }
-
-
-}
 ?>
 
 <!DOCTYPE html>
@@ -46,8 +24,44 @@ if(isset($_POST["submit"])){
 
     </style>
     <script src="https://use.fontawesome.com/releases/v6.3.0/js/all.js" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 </head>
 <body>
+    <?php  
+    if(isset($_POST["submit"])){
+
+    //cek apakah data berhasil diubah atau tidak
+    if(ubah($_POST) > 0){
+        echo "
+            <script>
+                Swal.fire({
+                    title: 'data berhasil diubah!',
+                    icon: 'success',
+                    draggable: true
+                }).then(function() {
+                document.location.href = 'index.php';
+                });
+            </script>
+            ";
+    } else {
+        echo "
+            <script>
+                Swal.fire({
+                    title: 'data gagal diubah!',
+                    icon: 'error',
+                    draggable: true
+                }).then(function() {
+                document.location.href = 'index.php';
+                });
+            </script>
+            ";
+    }
+
+
+}
+?>
+
+
     <div class="container bg-white p-4 mt-4 rounded shadow" style="max-width: 800px;">
     <h2 class="mb-4 text-center">Ubah data mahasiswa</h2>
 

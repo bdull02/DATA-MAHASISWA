@@ -1,19 +1,7 @@
 <?php
 require 'functions.php';
 
-if(isset($_POST["register"])){
-    global $conn;
-    if(registrasi($_POST) > 0){
-        echo "
-        <script>
-            alert('user berhasil ditambahkan!');
-        </script>
-        ";
-    }else {
-        echo mysqli_error($conn);
-    }
 
-}
 ?>
 
 <!DOCTYPE html>
@@ -38,9 +26,34 @@ if(isset($_POST["register"])){
         }
     </style>
     <script src="https://use.fontawesome.com/releases/v6.3.0/js/all.js" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
 </head>
 <body>
+    <?php 
+    if(isset($_POST["register"])){
+    global $conn;
+    if(registrasi($_POST) > 0){
+        echo "
+            <script>
+                Swal.fire({
+                    title: 'data berhasil ditambahkan!',
+                    icon: 'success',
+                    draggable: true
+                });
+            </script>
+            ";
+    }else {
+        echo mysqli_error($conn);
+    }
+
+
+    
+
+}
+    ?>
+
+
     <div class="login-card">
     <div class="card shadow">
     <div class="card-header bg-dark text-white text-center py-3">

@@ -156,11 +156,11 @@ function registrasi($data){
 
     if(mysqli_fetch_assoc($result)){
         echo "
+        <script src='https://cdn.jsdelivr.net/npm/sweetalert2@11'></script>
         <script>
-            alert('username yang dipilih sudah terdaftar!');
+            Swal.fire('Gagal!', 'Username yang dipilih sudah terdaftar!', 'warning');
         </script>
         ";
-        
         return false;
     }
 
@@ -168,8 +168,9 @@ function registrasi($data){
     //cek konfirmasi password
     if($password !== $password2){
         echo "
+        <script src='https://cdn.jsdelivr.net/npm/sweetalert2@11'></script>
         <script>
-         alert('Konfirmasi password tidak sesuai!');
+            Swal.fire('Gagal!', 'Konfirmasi Password Tidak Sesuai!', 'warning');
         </script>
         ";
         return false;
